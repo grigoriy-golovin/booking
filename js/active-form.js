@@ -1,8 +1,7 @@
 "use strict";
 
 (function () {
-	var pinMain = document.querySelector(".map__pin--main");
-	pinMain.addEventListener("mouseup", function (evt) {
+	var activeForm = function () {
 		var fieldsets = document.querySelectorAll("fieldset");
 		for (var i = 0; i < fieldsets.length; i++) {
 			fieldsets[i].removeAttribute("disabled");
@@ -13,5 +12,8 @@
 
 		var form = document.querySelector(".notice__form");
 		form.classList.remove("notice__form--disabled");
-	});
+	}
+
+	var pinMain = document.querySelector(".map__pin--main");
+	pinMain.addEventListener("mouseup", activeForm);
 })();
