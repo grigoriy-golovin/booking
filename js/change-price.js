@@ -21,6 +21,6 @@
 			setPrice(10000);
 		}
 	};
-
+	typeChangeHandler();
 	typeOfHousing.addEventListener("change", typeChangeHandler);
 })();

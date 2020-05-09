@@ -12,7 +12,8 @@
 
 		var form = document.querySelector(".notice__form");
 		form.classList.remove("notice__form--disabled");
-	}
+		pinMain.removeEventListener("mouseup", activeForm);
+	};
 
 	var pinMain = document.querySelector(".map__pin--main");
 	pinMain.addEventListener("mouseup", activeForm);
