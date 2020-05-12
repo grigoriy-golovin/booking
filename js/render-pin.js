@@ -5,18 +5,25 @@
 		.content.querySelector(".map__pin");
 
 	var onLoad = function (data) {
-		window.advertisements = data;
-		var mapPins = document.querySelector(".map__pins");
-		var fragment = document.createDocumentFragment();
-		for (var i = 0; i < window.advertisements.length; i++) {
-			fragment.append(createMark(window.advertisements[i]));
-		}
-		mapPins.append(fragment);
-		pinMain.removeEventListener("mouseup", renderPin);
+		window.notice = data;
+		window.renderPin(window.notice);
 	};
 
 	var onError = function (message) {
 		console.error(message);
+	};
+
+	window.renderPin = function (arr) {
+		var mapPins = document.querySelector(".map__pins");
+		var fragment = document.createDocumentFragment();
+		var limitLength = 5;
+		if (arr.length < 5) {
+			limitLength = arr.length;
+		}
+		for (var i = 0; i < limitLength; i++) {
+			fragment.append(createMark(arr[i]));
+		}
+		mapPins.append(fragment);
 	};
 
 	var createMark = function (data) {
@@ -30,16 +37,15 @@
 		return mark;
 	};
 
-	var renderPin = function () {
+	var pinMainUpHandler = function () {
 		window.download(
 			"https://javascript.pages.academy/keksobooking/data",
 			onLoad,
 			onError
 		);
-
-
+		pinMain.removeEventListener("mouseup", pinMainUpHandler);
 	};
 
 	var pinMain = document.querySelector(".map__pin--main");
-	pinMain.addEventListener("mouseup", renderPin);
+	pinMain.addEventListener("mouseup", pinMainUpHandler);
 })();

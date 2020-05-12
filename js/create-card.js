@@ -13,22 +13,15 @@
 			".popup__price"
 		).textContent = `${data.offer.price}₽/ночь`;
 
-		var typeInRus = function () {
-			var ru;
-			var typeInEng = data.offer.type;
-			if (typeInEng === "flat") {
-				ru = "Квартира";
-			} else if (typeInEng === "bungalo") {
-				ru = "Бунгало";
-			} else if (typeInEng === "house") {
-				ru = "Дом";
-			} else if (typeInEng === "palace") {
-				ru = "Дворец";
-			}
-			return ru;
+		var engToRus = {
+			flat: "Квартира",
+			bungalo: "Бунгало",
+			house: "Дом",
+			palace: "Дворец",
 		};
 
-		mapCard.querySelector("h4").textContent = typeInRus();
+		mapCard.querySelector("h4").textContent = engToRus[data.offer.type];
+
 		mapCard.querySelector(
 			".popup__text--capacity"
 		).textContent = `${data.offer.rooms} комнаты для ${data.offer.guests} гостей`;
@@ -59,7 +52,6 @@
 
 		mapCard.querySelector(".popup__avatar").src = data.author.avatar;
 
-		
 		return mapCard;
 	};
 })();
