@@ -1,16 +1,27 @@
-// "use strict";
+"use strict";
+(function () {
+	var mapPin = document
+		.querySelector("template")
+		.content.querySelector(".map__pin");
 
+	var onLoad = function (data) {
+		window.notice = data;
+		window.renderPin(window.notice);
+	};
 
-// (function(){
+	var onError = function (message) {
+		console.error(message);
+	};
 
-// 	var onLoad = function(data) {
-// 			window.advertisements = data;
-// 	}
-// 	var onError = function(message) {
-// 			console.error(message);
-// 	}
+	var pinMainUpHandler = function () {
+		window.download(
+			"https://javascript.pages.academy/keksobooking/data",
+			onLoad,
+			onError
+		);
+		pinMain.removeEventListener("mouseup", pinMainUpHandler);
+	};
 
-// 	window.download("https://javascript.pages.academy/keksobooking/data", onLoad, onError);
-// })();
-
-
+	var pinMain = document.querySelector(".map__pin--main");
+	pinMain.addEventListener("mouseup", pinMainUpHandler);
+})();

@@ -579,7 +579,6 @@ textarea:focus {
 
 .notice__form .upload {
   display: flex;
-
   min-height: 70px;
 }
 
